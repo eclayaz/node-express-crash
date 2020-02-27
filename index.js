@@ -21,6 +21,11 @@ app.get("/api/members", (req, res) => {
   res.json(members);
 });
 
+// Get single member
+app.get("/api/members/:id", (req, res) => {
+  res.json(members.filter(member => member.id === parseInt(req.params.id)));
+});
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server started port ${PORT}`));
