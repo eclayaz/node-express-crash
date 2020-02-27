@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const members = require("../../Memebers");
+const uuid = require("uuid");
 
 // Get all members
 router.get("/", (req, res) => {
@@ -16,6 +17,21 @@ router.get("/:id", (req, res) => {
   } else {
     res.status(400).json({ msg: `No member with the id of ${req.params.id}` });
   }
+});
+
+router.post("/", (req, res) => {
+  const newMember = {
+    id: uuid.v4(),
+    name: req.body.name,
+    status: "active"
+  };
+
+  if (!newMember.name) {
+    return res.status(400).json({ msg: "Name is missing" });
+  }
+
+  members.push(newMember);
+  res.send(newMember);
 });
 
 module.exports = router;
