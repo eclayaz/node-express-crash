@@ -32,7 +32,10 @@ router.post("/", (req, res) => {
   }
 
   members.push(newMember);
-  res.send(newMember);
+
+  //res.send(newMember);
+  // to support ui
+  res.redirect("/");
 });
 
 // Update a member
