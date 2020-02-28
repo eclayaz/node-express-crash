@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const logger = require("./middleware/logger");
 const exphbs = require("express-handlebars");
+const members = require("./Memebers");
 
 const app = express();
 
@@ -20,7 +21,10 @@ app.set("view engine", "handlebars");
 
 // Homepage routes
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("index", {
+    title: "Member app",
+    members
+  });
 });
 
 // Set static folder

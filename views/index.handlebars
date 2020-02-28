@@ -1,1 +1,8 @@
-<h1>members</h1>
+<h1 class="text-conter mb-3">{{title}}</h1>
+
+<h4>Members</h4>
+<ul class="list-group">
+    {{#each members}}
+    <li class="list-group-item">{{this.name}}</li>
+    {{/each}}
+</ul>
