@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
-const members = require("./Memebers");
 const logger = require("./middleware/logger");
+const exphbs = require("express-handlebars");
 
 const app = express();
 
@@ -9,10 +9,19 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// Handlebars middleware
+app.engine("handlebars", exphbs());
+app.set("view engine", "handlebars");
+
 // This can be get done by static folder
 // app.get("/", (req, res) => {
 //   res.sendFile(path.join(__dirname, "public", "index.html"));
 // });
+
+// Homepage routes
+app.get("/", (req, res) => {
+  res.render("index");
+});
 
 // Set static folder
 app.use(express.static(path.join(__dirname, "public")));
